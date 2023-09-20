@@ -1,2 +1,12 @@
-<h1 style="text-align: center;">Timezone: </h1>
-<h1 style="text-align: center;"> Time: </h1>
+<h1 style="text-align: center" *ngIf="timezone == ' '? 'UTC': timezone">Timezone: {{ timezone }}</h1>
+<h1 style="text-align: center">Time: {{ time }}</h1>
+
+<div style="text-align: center; font-size: larger;">
+  <label for="timezone">Select Timezone: </label>
+  <select id="timezone" [(ngModel)]="timezone" (change)="getTime()">
+    <option value="UTC">UTC</option>
+    <option value="BST">BST</option>
+    <option value="GMT +6">GMT +6</option>
+    <!-- Add more timezone options here -->
+  </select>
+</div>
