@@ -17,13 +17,12 @@ export class AppComponent implements OnInit {
   constructor(private timeApi: TimeApiService) {}
 
   title = 'timezone';
-  timezone: string = 'BST';
+  timezone: string = 'UTC';
   time: string = '';
+  digits: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-  getTime(): any {
+  getTime() {
     this.timeApi.getCurrentTime(this.timezone).subscribe((date) => {
-      console.log(this.timezone, 'here');
-
       this.time = date.current_time;
       return date.current_time;
     });

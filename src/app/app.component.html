@@ -1,12 +1,26 @@
-<h1 style="text-align: center" *ngIf="timezone == ' '? 'UTC': timezone">Timezone: {{ timezone }}</h1>
+<h1 style="text-align: center" *ngIf="timezone == ' ' ? 'UTC' : timezone">
+  Timezone: {{ timezone }}
+</h1>
 <h1 style="text-align: center">Time: {{ time }}</h1>
 
-<div style="text-align: center; font-size: larger;">
+<div style="text-align: center; font-size: larger">
   <label for="timezone">Select Timezone: </label>
   <select id="timezone" [(ngModel)]="timezone" (change)="getTime()">
     <option value="UTC">UTC</option>
-    <option value="BST">BST</option>
-    <option value="GMT +6">GMT +6</option>
+    <option value="Asia/Dhaka">Dhaka, BD</option>
+    <option value="Europe/London">London, UK</option>
+    <option value="Canada/Newfoundland">New Foundland, CA</option>
+    <option value="Europe/Berlin">Berlin, DE</option>
     <!-- Add more timezone options here -->
   </select>
+</div>
+
+<div class="clock-wrapper black-border">
+  <div class="clock-analog shadow">
+    <div class="source"></div>
+    <span *ngFor="let digit of digits" class="digit digit{{ digit }}" [ngStyle]="{'transform': 'rotate(deg)'}"
+      ><b>{{ digit }}</b>
+    </span>
+  </div>
+  <div class="clock-digital shadow">Digital</div>
 </div>

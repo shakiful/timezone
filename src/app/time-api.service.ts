@@ -9,7 +9,8 @@ export class TimeApiService {
   constructor(private http: HttpClient) {}
 
   getCurrentTime(timezone: string): Observable<any> {
-    const url = `${this.apiUrl}?timezone = ${timezone}`;
+
+    const url = `${this.apiUrl}?timezone=${timezone}`;
     return this.http.get(url);
   }
 }
