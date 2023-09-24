@@ -1,26 +1,47 @@
-<h1 style="text-align: center" *ngIf="timezone == ' ' ? 'UTC' : timezone">
-  Timezone: {{ timezone }}
-</h1>
-<h1 style="text-align: center">Time: {{ time }}</h1>
-
-<div style="text-align: center; font-size: larger">
-  <label for="timezone">Select Timezone: </label>
-  <select id="timezone" [(ngModel)]="timezone" (change)="getTime()">
-    <option value="UTC">UTC</option>
-    <option value="Asia/Dhaka">Dhaka, BD</option>
-    <option value="Europe/London">London, UK</option>
-    <option value="Canada/Newfoundland">New Foundland, CA</option>
-    <option value="Europe/Berlin">Berlin, DE</option>
-    <!-- Add more timezone options here -->
-  </select>
-</div>
-
 <div class="clock-wrapper black-border">
+  <h1
+    style="text-align: center; color: #808088"
+    *ngIf="timezone == ' ' ? 'UTC' : timezone"
+  >
+    Timezone: {{ timezone }}
+  </h1>
+
+  <div style="text-align: center; font-size: larger; color: #808088">
+    <label for="timezone">Select Timezone: </label>
+    <select id="timezone" [(ngModel)]="timezone" (change)="getTime()">
+      <option value="UTC">UTC</option>
+      <option value="Asia/Dhaka">Dhaka, BD</option>
+      <option value="Europe/London">London, UK</option>
+      <option value="Canada/Newfoundland">NewFoundland, CA</option>
+      <option value="Europe/Berlin">Berlin, DE</option>
+    </select>
+  </div>
+
+  <div class="clock-digital shadow">
+    <span class="date hour">{{ time }}</span>
+  </div>
   <div class="clock-analog shadow">
     <div class="source"></div>
-    <span *ngFor="let digit of digits" class="digit digit{{ digit }}" [ngStyle]="{'transform': 'rotate(deg)'}"
-      ><b>{{ digit }}</b>
+    <span
+      *ngFor="let digit of digits"
+      class="digit digit{{ digit }}"
+      [ngStyle]="{ transform: 'rotate(' + digit * 30 + 'deg)' }"
+      ><b [ngStyle]="{ transform: 'rotate(-' + digit * 30 + 'deg)' }">{{
+        digit
+      }}</b>
     </span>
+
+    <div
+      class="hand hour-hand"
+      [ngStyle]="{ transform: 'rotate(' + hourHandPosition + 'deg)' }"
+    ></div>
+    <div
+      class="hand minute-hand"
+      [ngStyle]="{ transform: 'rotate(' + minuteHandPosition + 'deg)' }"
+    ></div>
+    <div
+      class="hand second-hand"
+      [ngStyle]="{ transform: 'rotate(' + secondHandPosition + 'deg)' }"
+    ></div>
   </div>
-  <div class="clock-digital shadow">Digital</div>
 </div>
